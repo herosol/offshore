@@ -49,10 +49,11 @@ class Jobs extends Admin_Controller {
                 'description'=>$vals['description'],
                 'job_cat'=>$vals['job_category'],
                 'years_of_experience'=>$vals['years_of_experience'],
-                'min_salary'=>$vals['min_salary'],
-                'max_salary'=>$vals['max_salary'],
-                'job_type'=>$vals['job_type'],
-                'city'=>$vals['city'],
+                'practice_area_id'=>$vals['practice_area_id'],
+                'experience_level_id'=>$vals['experience_level_id'],
+                'jurisdiction'=>$vals['jurisdiction'],
+                'positions_available'=>$vals['positions_available'],
+                'salary'=>$vals['salary'],
                 'status'=>$vals['status'],
                 'created_date'=>$created_date,
             );
@@ -66,6 +67,8 @@ class Jobs extends Admin_Controller {
         }
         $this->data['row'] = $this->master->get_data_row('jobs',array('id'=>$this->uri->segment('4')));
         $this->data['cats'] = $this->master->get_data_rows('job_categories', ['status'=> 1]);
+        $this->data['areas'] = $this->master->get_data_rows('job_practice_area', ['status'=> 1]);
+        $this->data['levels'] = $this->master->get_data_rows('job_experience_levels', ['status'=> 1]);
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);        
     }
 

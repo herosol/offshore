@@ -64,10 +64,48 @@
                                         </select>
                                     </div>
                                     <div class="col-md-12">
+                                        <label for="practice_area_id" class="control-label">Practice Area<span class="symbol required">*</span></label>
+                                        <select name="practice_area_id" id="practice_area_id" class="form-control" required>
+                                            <option value=''>-- Select --</option>
+                                            <?php foreach ($areas as $index => $c) { ?>
+                                                <option value="<?= $c->id ?>" <?= ($row->practice_area_id == $c->id) ? 'selected' : '' ?>> <?= $c->title ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="experience_level_id" class="control-label">Experience Level<span class="symbol required">*</span></label>
+                                        <select name="experience_level_id" id="experience_level_id" class="form-control" required>
+                                            <option value=''>-- Select --</option>
+                                            <?php foreach ($levels as $index => $c) { ?>
+                                                <option value="<?= $c->id ?>" <?= ($row->experience_level_id == $c->id) ? 'selected' : '' ?>> <?= $c->title ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
                                                 <label class="control-label">Job Title</label>
                                                 <input type="text" name="title" value="<?=$row->title?>" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="control-label">Jurisdiction</label>
+                                                <input type="text" name="jurisdiction" value="<?=$row->jurisdiction?>" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="control-label">Positions Available</label>
+                                                <input type="text" name="positions_available" value="<?=$row->positions_available?>" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -99,59 +137,20 @@
                                 <div class="clearfix"></div>
 
                                 <div class="panel-heading col-md-12">
-                                    <div class="panel-title"><h3>Salary Range</h3></div>
+                                    <div class="panel-title"><h3>Salary</h3></div>
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <label class="control-label">Minimum Salary</label>
-                                                <input type="text" name="min_salary" value="<?=$row->min_salary?>" class="form-control" required>
+                                                <label class="control-label">Salary</label>
+                                                <input type="text" name="salary" value="<?=$row->salary?>" class="form-control" required>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <label class="control-label">Max Salary</label>
-                                                <input type="text" name="max_salary" value="<?=$row->max_salary?>" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>                                   
+                                    </div>                                
                                     <div class="clearfix"></div>
                                 </div>
 
-
-                                <div class="panel-heading col-md-12">
-                                    <div class="panel-title"><h3>Job Type</h3></div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-12">
-                                        <label for="job_type" class="control-label">Job Type<span class="symbol required">*</span></label>
-                                        <select name="job_type" id="job_type" class="form-control" required>
-                                            <option value=''>-- Select --</option>
-                                            <?php foreach (['Full Time', 'Part Time'] as $jt) : ?>
-                                                <option value="<?= $jt ?>" <?= $row->job_type == $jt ? 'selected' : '' ?>><?= $jt ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-
-                                <div class="panel-heading col-md-12">
-                                    <div class="panel-title"><h3>Location</h3></div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <label class="control-label">City</label>
-                                                <input type="text" name="city" value="<?=$row->city?>" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>                                 
-                                    <div class="clearfix"></div>
-                                </div>
                             </div>                            
                         </div>
                     </div>
@@ -216,12 +215,13 @@
         <thead>
             <tr>
                 <th width="5%" class="text-center">Sr#</th>
-                <th width="13%">Job Type</th>
                 <th width="20%">Title</th>
+                <th width="10%">Job Type</th>
+                <th width="10%">Practice Area, Experience Level</th>
+                <th width="10%">Jursidiction</th>
                 <th width="30%">Description</th>
                 <th width="5%">Years Of Experiece</th>
-                <th width="10%">Salary Range</th>
-                <th width="10%">Location</th>
+                <th width="10%">Salary</th>
                 <th>Status</th>
                 <th width="15%">Created date</th>
                 <th width="12%" class="text-center">&nbsp;</th>
@@ -232,12 +232,13 @@
                 <?php foreach ($jobs as $blog):  ?>                    
                     <tr class="odd gradeX">
                         <td class="text-center"><?= ++$count; ?></td>
-                        <td><?= $blog->job_type ?><br/><b><?= get_job_cat($blog->job_cat) ?></b></td>
-                        <td><b><?= $blog->title ?></b></td>
+                        <td><b><?= $blog->title ?></b><br/><?= $blog->positions_available ?> Positions Available</td>
+                        <td><b><?= get_job_cat($blog->job_cat) ?></b></td>
+                        <td><b><?= get_prac_area($blog->practice_area_id) ?></b><br/><b><?= get_experience_level($blog->experience_level_id) ?></b></td>
+                        <td><b><?= $blog->jurisdiction ?></b></td>
                         <td><b><?= short_text($blog->description,100); ?></b></td>
                         <td><b><?= $blog->years_of_experience==10?'10+':$blog->years_of_experience ?></b></td>
-                        <td><b><?= $blog->min_salary.'K - '.$blog->max_salary.'K' ?></b></td>
-                        <td><b><?= $blog->city ?></b></td>
+                        <td><b><?= $blog->salary?></b></td>
                         <td><b><?=get_active_status($blog->status)?></b></td>
                        <td><b><?= format_date($blog->created_date,'M d Y h:i:s A'); ?></b></td>
                         <td class="text-center">

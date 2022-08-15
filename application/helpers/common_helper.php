@@ -413,7 +413,15 @@ function get_site_image_src($path, $image, $type = '', $user_image = false)
     }
     return empty($user_image) ? base_url('assets/images/no-image.svg') : base_url('assets/images/no-user.svg');
 }
-
+function get_member_active_status($status)
+{
+    if ($status == '0') {
+        return '<span class="badge red">In active</span>';
+    }
+    else if ($status == '1') {
+        return '<span class="badge green">Active</span>';
+    }
+}
 function getImageDimension($image)
 {
     if (!empty($image)) {

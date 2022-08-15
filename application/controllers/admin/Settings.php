@@ -43,6 +43,20 @@ class Settings extends Admin_Controller
                     exit;
                 }
             }
+            
+            if (($_FILES["footer_background"]["name"] != "")) {
+                $footer = upload_file(UPLOAD_PATH . "images/", 'footer_background', 'image', toSlugUrl($vals['site_name']).'-footer-bg');
+                if (!empty($footer['file_name'])) {
+                    generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $footer['file_name'], 1920, 'thumb_');
+                    if (!empty($this->data['adminsite_setting']->footer_background))
+                        $this->remove_file($this->data['adminsite_setting']->footer_background);
+                    $vals['footer_background'] = $footer['file_name'];
+                } else {
+                    setMsg('errorMsg', 'Please upload a valid logo image file >> ' . strip_tags($footer['error']));
+                    redirect(ADMIN . '/settings', 'refresh');
+                    exit;
+                }
+            }
 
             if (($_FILES["icon_image"]["name"] != "")) {
                 $icon = upload_file(UPLOAD_PATH . "images/", 'icon_image','image',toSlugUrl($vals['site_name']).'-icon');

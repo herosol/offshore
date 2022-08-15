@@ -1,0 +1,349 @@
+@media screen and (max-width: 1200px) {
+  /*====================form placeholder font==============*/
+
+  ::-webkit-input-placeholder {
+    font-size: 12px;
+  }
+
+  ::-moz-placeholder {
+    font-size: 12px;
+  }
+
+  :-ms-input-placeholder {
+    font-size: 12px;
+  }
+
+  :-moz-placeholder {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #banner {
+    min-height: 600px;
+  }
+
+  #about .col .image {
+    height: auto;
+  }
+
+  #about .colr {
+    padding-right: 0px;
+  }
+
+  .full {
+    min-height: 500px !important;
+  }
+
+  #about3 .col1 {
+    width: 100%;
+  }
+
+  #about3 .colr {
+    width: 100%;
+    padding-left: 0px;
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  #about3 .flex {
+    flex-wrap: wrap-reverse;
+  }
+
+  #about2 .colr {
+    width: 100%;
+    padding-right: 0px;
+    padding-bottom: 30px;
+  }
+
+  #about2 .col {
+    width: 100%;
+  }
+
+  #about2 .colr .inner-content {
+    color: #000;
+    text-align: center;
+  }
+
+  #video1 {
+    min-height: 500px;
+  }
+
+  #job-detail .col {
+    width: 100%;
+    padding-right: 0px;
+    padding-bottom: 30px;
+  }
+
+  #job-detail .colr {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  /*_____ Navigation _____*/
+  .toggle {
+    display: flex;
+  }
+  header {
+    height: auto;
+  }
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-flow: wrap;
+    float: none;
+    display: none;
+    height: auto;
+    background: rgb(255 255 255 / 90%);
+    padding: 20px 50px 15px;
+    margin: 0;
+    visibility: hidden;
+    opacity: 0;
+    backdrop-filter: saturate(180%) blur(20px);
+    overflow: auto;
+    z-index: 2;
+  }
+
+  nav.active {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+  }
+  #nav {
+    align-items: center;
+    flex-flow: wrap;
+  }
+  #nav > li {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
+  }
+  nav > ul > li > a {
+    font-size: 20px;
+  }
+  #nav > li > .sub {
+    position: static;
+    display: none;
+    width: 100%;
+    max-height: none;
+    background: transparent;
+    visibility: visible;
+    opacity: 1;
+    text-align: center;
+    margin: 0 auto !important;
+    border: 0;
+    border-radius: 0;
+    transition: none;
+    box-shadow: none;
+  }
+  #nav > li > .sub > li {
+    display: flex;
+    justify-content: center;
+  }
+  #nav > li > .sub > li > a {
+    background: transparent;
+    border-top: 0;
+    border-bottom: 0;
+  }
+  nav #cta {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* -------------------footer-------------------- */
+  footer .flexRow > .col {
+    width: 100%;
+  }
+
+  #about .colr {
+    width: 100%;
+    padding-bottom: 30px;
+  }
+
+  #about .col {
+    width: 100%;
+  }
+
+  #do .col {
+    width: calc(100% / 1);
+    padding: 10px;
+  }
+
+  #do .col .inner {
+    border-left: none;
+    padding-left: 0px;
+  }
+
+  #bio .col {
+    width: 100%;
+    z-index: -4;
+    align-self: center;
+    padding-bottom: 30px;
+  }
+
+  #bio .colr {
+    width: 100%;
+    align-self: center;
+    text-align: center;
+  }
+
+  #bio .col .image {
+    margin: auto;
+  }
+
+  #featured-video .col {
+    width: 100%;
+  }
+
+  #featured-video .col h2 {
+    border: none;
+    text-align: center;
+  }
+
+  #featured-video .colr {
+    width: 100%;
+    padding-left: 0px;
+  }
+
+  .col-xs-3:not(:last-child) .form_blk {
+    margin-bottom: 10px;
+  }
+
+  .col-xs-3 {
+    width: 100%;
+  }
+
+  .search-btn {
+    width: 150px;
+    margin: auto;
+  }
+
+  #location1 .col {
+    width: 50%;
+    padding: 10px;
+  }
+
+  #thrice .col {
+    width: calc(100% / 2);
+    margin: auto;
+  }
+
+  nav > ul > li > a {
+    color: #000;
+  }
+
+  .toggle.active span:before,
+  .toggle.active span:after {
+    background-color: #000;
+  }
+
+  #about .flex {
+    flex-wrap: wrap-reverse;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /*_____ col-xx-? _____*/
+  .col-xx-12,
+  .col-xx-11,
+  .col-xx-10,
+  .col-xx-9,
+  .col-xx-8,
+  .col-xx-7,
+  .col-xx-6,
+  .col-xx-5,
+  .col-xx-4,
+  .col-xx-3,
+  .col-xx-2,
+  .col-xx-1 {
+    width: 100% !important;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  #banner .main-content > h1 {
+    font-size: 23px;
+  }
+
+  #banner {
+    min-height: 500px;
+  }
+
+  .image_bg1 {
+    display: none;
+  }
+
+  section {
+    position: relative;
+    padding: 50px 0;
+  }
+
+  #video {
+    min-height: 240px;
+  }
+
+  #bio .col .image {
+    height: 230px;
+    width: 230px;
+  }
+
+  #featured-video .colr .col1 {
+    width: calc(100% / 1);
+    padding: 10px;
+  }
+
+  #position .col .inner {
+    display: block;
+  }
+
+  #position .inner-col .col .inner .col1 .content {
+    margin-bottom: 30px;
+  }
+
+  .apply-form .inner {
+    padding: 40px 20px;
+  }
+
+  #job-detail .colr .col1 h3 {
+    padding: 10px;
+  }
+
+  #location1 .col {
+    width: 100%;
+  }
+
+  #thrice .col .image {
+    height: auto;
+  }
+
+  #thrice .col {
+    width: calc(100% / 1);
+  }
+
+  #contact-pg .col {
+    width: 100%;
+    padding-bottom: 30px;
+  }
+
+  #contact-pg .colr {
+    width: 100%;
+  }
+
+  #contact-pg .colr h2 {
+    text-align: center;
+  }
+}

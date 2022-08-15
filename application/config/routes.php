@@ -53,20 +53,9 @@ $route['404_override'] = 'page/error';
 $route['translate_uri_dashes'] = TRUE;
 
 $route['default_controller'] = 'index';
-$route['about'] = 'page/about';
-$route['resources'] = 'page/resources';
-$route['hocl/(:any)/(:any)'] = 'page/what_is_hocl/$1/$2';
-$route['case-study/(:any)/(:any)'] = 'page/case_studies/$1/$2';
-$route['product/(:any)/(:any)'] = 'page/product_details/$1/$2';
-$route['faq'] = 'page/faq';
-$route['privacy-policy'] = 'page/privacy_policy';
-$route['where-to-buy'] = 'page/where_to_buy';
-$route['terms-and-conditions'] = 'page/terms';
-$route['terms-of-use'] = 'page/terms';
-$route['contact'] = 'page/contact_us';
-
-// $route['privacy-policy'] = 'page/privacy_policy';
-// $route['terms-and-conditions'] = 'page/terms';
+$route['jobs'] = 'page/jobs';
+$route['locations'] = 'page/locations';
+$route['contact-us'] = 'page/contact_us';
 
 
 $route['admin/login'] = 'admin/index/login';
@@ -74,12 +63,3 @@ $route['admin/logout'] = 'admin/index/logout';
 $route['admin/footer-content'] = 'admin/sitecontent/footer';
 
 $route['newsletter'] = 'ajax/newsletter';
-
-
-/*** start paypal ***/
-$route['pay-now/(:any)'] = 'paypal/pay_now/$1';
-$route['success-charge/(:any)'] = 'paypal/success_charge/$1';
-$route['cancel-charge/(:any)'] = 'paypal/cancel_charge/$1';
-$route['notify-charge'] = 'paypal/notify_charge';
-
-/*** end paypal ***/

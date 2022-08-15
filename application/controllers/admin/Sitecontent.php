@@ -31,16 +31,16 @@ class Sitecontent extends Admin_Controller
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
                     if(!empty($image['file_name'])){
                         if($i==1){
-                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1200, 'thumb_');
+                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1920, 'thumb_');
                         }
                         else if($i==2){
-                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 400, 'thumb_');
+                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 600, 'thumb_');
                         }
                         else if($i==6 || $i==7 || $i==8){
                             generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 80, 'thumb_');
                         }
                         else if($i==9){
-                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1000, 'thumb_');
+                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1920, 'thumb_');
                         }
                         else if($i==10){
                             generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 400, 'thumb_');
@@ -51,6 +51,15 @@ class Sitecontent extends Admin_Controller
                     }
                 }
             }
+
+            $sec6Phto['pics'] = $vals['sec6_pics'];
+            $sec6['title'] = $vals['sec6_title'];
+            $sec6['text1'] = $vals['sec6_link'];
+            $sec6['order_no'] = $vals['sec6_order_no'];
+            unset($vals['sec6_pics'],$vals['sec6_order_no'],$vals['sec6_title'], $vals['sec6_link']);
+            $this->master->delete_where('multi_text', array('section'=> 'home-sec-6','site_lang'=>$this->session->userdata('admin_lang')));
+            $sec6s = array('order_no' => $sec6['order_no'], 'title' => $sec6['title'], 'txt1' => $sec6['text1']);
+            saveMultiMediaFieldsImgs('./uploads/images/', $_FILES['sec6_image'], 'sec6_image', 'home-sec-6', $sec6Phto['pics'], $sec6s,$this->session->userdata('admin_lang'), 300);
 
 
             $data = serialize(array_merge($content_row, $vals));
@@ -86,7 +95,7 @@ class Sitecontent extends Admin_Controller
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
                     if(!empty($image['file_name'])){
                         if($i==1){
-                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1000, 'thumb_');
+                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1920, 'thumb_');
                         }
                         if(isset($content_row['image'.$i]))
                             $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
@@ -129,7 +138,7 @@ class Sitecontent extends Admin_Controller
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
                     if(!empty($image['file_name'])){
                         if($i==1){
-                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1000, 'thumb_');
+                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1920, 'thumb_');
                         }
                         if(isset($content_row['image'.$i]))
                             $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
@@ -173,7 +182,7 @@ class Sitecontent extends Admin_Controller
                         $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
                         if(!empty($image['file_name'])){
                             if($i==1){
-                                generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1200, 'thumb_');
+                                generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1920, 'thumb_');
                             }
                             if(isset($content_row['image'.$i]))
                                 $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
@@ -197,6 +206,7 @@ class Sitecontent extends Admin_Controller
             $this->master->delete_where('multi_text', array('section'=> 'contact-sec2-left-2','site_lang'=>$this->session->userdata('admin_lang')));
             $sec2_left_2s = array('order_no' => $sec2_left_2['order_no'],'title' => $sec2_left_2['title']);
             saveMultiMediaFieldsImgs('./uploads/images/', $_FILES['sec2_left_2_image'], 'sec2_left_2_image', 'contact-sec2-left-2', $sec2_left_2Phto['pics'], $sec2_left_2s,$this->session->userdata('admin_lang'),100);
+
             $data = serialize(array_merge($content_row, $vals));
             $this->page_model->save(array('code' => $data,'site_lang'=>$this->session->userdata('admin_lang')),'ckey', $this->uri->segment(3),$this->session->userdata('admin_lang'));
             setMsg('success', 'Settings updated successfully !');

@@ -91,7 +91,38 @@
                         <span class="title">Manage Footer Content</span>
                     </a>
                 </li> -->
-                
+            <li class=" <?= ($this->uri->segment(2) == 'job_categories' || $this->uri->segment(2) == 'jobs' || $this->uri->segment(2) == 'practice_area' || $this->uri->segment(2) == 'experience_levels') ? ' opened  active' : '' ?>">
+                <a href="javascript:void(0)">
+                    <i class="entypo-doc-text"></i>
+                    <span class="title">Manage Jobs Listing</span>
+                </a>
+                <ul>
+                    <li class=" <?= ($this->uri->segment(2) == 'job_categories') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/job_categories') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Job Types</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(2) == 'practice_area') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/practice_area') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Job Practice Areas</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(2) == 'experience_levels') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/experience_levels') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Job Experience Levels</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(2) == 'jobs') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/jobs') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Jobs</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             
             
             <li class="opened <?= ($this->uri->segment(2) == 'contact') ? 'active' : '' ?>">

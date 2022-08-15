@@ -23,13 +23,13 @@
                             <td><strong>Email : </strong></td>
                             <td><?php echo $row->email; ?></td>
                         </tr>
-                        <!-- <tr>
-                            <td><strong>Subject : </strong></td>
-                            <td><?php echo $row->subject; ?></td>
-                        </tr> -->
                         <tr>
                             <td><strong>Phone# : </strong></td>
                             <td><?php echo $row->phone; ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Country : </strong></td>
+                            <td><?php echo $row->country; ?></td>
                         </tr>
                         <tr>
                             <td><strong>Message : </strong></td>

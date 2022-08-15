@@ -369,6 +369,66 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <table class="table table-bordered newTable" id="newTable">
+                            <tr style="background-color: #eee">
+                                <th width="10%">Image</th>
+                                <th width="25%">Title</th>
+                                <th width="25%">Image Link</th>
+                                <th width="10%">Order#</th>
+                                <th width="4%" class="text-center"><a href="javascript:void(0)" id="addNewRowTbl" class="addNewRowTbl"><i class="fa fa-plus" aria-hidden="true"></i></a></th>
+                            </tr>
+                            <?php $sec6s = getMultiText('home-sec-6'); ?>
+                            <?php if (count($sec6s) > 0) { $sec6s_count = 1; ?>
+                            <?php foreach ($sec6s as $sec6) { ?>
+                                <tr>
+                                    <td>
+                                        <div id="imgDiv">
+                                            <input type="file" name="sec6_image[]" accept="image/*" id="newImgInput" style="display: none;" />
+                                            <img src="<?php echo getImageSrc('./uploads/images/'.$sec6->image); ?>" style="width: 100%; cursor: pointer;" id="newImg"> 
+                                            <input type="hidden" name="sec6_pics[]" value="<?= $sec6->image; ?>"> 
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="sec6_title[]" id="sec6_title" value="<?= $sec6->title; ?>" class="form-control" placeholder="Title">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="sec6_link[]" id="sec6_link" value="<?= $sec6->txt1; ?>" class="form-control" placeholder="Link">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="sec6_order_no[]" id="sec6_order_no" value="<?= $sec6->order_no; ?>" class="form-control" placeholder="Order#">
+                                    </td>
+                                    <td class="text-center">
+                                        <?php if ($sec6s_count > 1) { ?>
+                                            <a href="javascript:void(0)" id="delNewRowTbl" class="delNewRowTbl"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php $sec6s_count++; ?>
+                            <?php } ?>
+                            <?php }else{ ?>
+                                <tr>
+                                    <td>
+                                        <div id="imgDiv">
+                                            <input type="file" name="sec6_image[]" accept="image/*" id="newImgInput" style="display: none;" />
+                                            <img src="<?php echo getImageSrc('./uploads/images/'); ?>" style="width: 100%; cursor: pointer;" id="newImg">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="sec6_title[]" id="sec6_title" value="" class="form-control" placeholder="Title">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="sec6_link[]" id="sec6_link" value="" class="form-control" placeholder="Link">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="sec6_order_no[]" id="sec6_order_no" value="" class="form-control" placeholder="Order#">
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                </tr>  
+                            <?php } ?>                  
+                        </table>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
