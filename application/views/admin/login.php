@@ -12,7 +12,7 @@
 
                 <div class="login-content">
 
-                    <a href="#" class="logo">
+                    <a href="<?=base_url()?>" class="logo">
 
                         <img src="<?= SITE_IMAGES.'/images/'.$adminsite_setting->site_logo ?>" height="50" alt="">
 

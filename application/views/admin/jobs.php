@@ -112,6 +112,21 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
+                                                <label class="control-label">Office Type</label>
+                                                <select name="working_type" id="working_type" class="form-control" required>
+                                                    <option value=''>-- Select --</option>
+                                                    <?php foreach (['remote', 'office_based'] as $index => $c) { ?>
+                                                        <option value="<?= $c ?>" <?= ($row->working_type == $c) ? 'selected' : '' ?>> <?= ucfirst(str_replace('_',' ', $c)) ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
                                                 <label class="control-label">  Description</label>
                                                 <textarea  rows="8" class="form-control ckeditor" name="description" required><?=$row->description?></textarea>
                                             </div>

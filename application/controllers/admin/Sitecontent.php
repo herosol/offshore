@@ -116,6 +116,49 @@ class Sitecontent extends Admin_Controller
         $this->data['row'] = unserialize($this->data['row']->code);
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
     }
+
+    public function job_detail()
+    {
+        $check = $this->page_model->num_rows(array('ckey' => $this->uri->segment(3),'site_lang'=>$this->session->userdata('admin_lang')));
+        // pr($this->db->last_query());
+        if (!$check) {
+            $this->page_model->save(array('ckey' => $this->uri->segment(3),'site_lang'=>$this->session->userdata('admin_lang')));
+        }
+        $this->data['enable_editor'] = TRUE;
+        $this->data['pageView'] = ADMIN . '/site_job_detail';
+        if ($vals = $this->input->post()) {
+            $content_row = $this->page_model->get_row_where(array('ckey' => $this->uri->segment(3),'site_lang'=>$this->session->userdata('admin_lang')));
+            $content_row = unserialize($content_row->code);
+
+            if(!is_array($content_row))
+                $content_row = array();
+            for($i = 1; $i <= 1; $i++) {
+                if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
+                    
+                    $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
+                    if(!empty($image['file_name'])){
+                        if($i==1){
+                            generate_thumb(UPLOAD_PATH . "images/", UPLOAD_PATH . "images/", $image['file_name'], 1920, 'thumb_');
+                        }
+                        if(isset($content_row['image'.$i]))
+                            $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                        $vals['image'.$i] = $image['file_name'];
+                    }
+                }
+            }
+
+            $data = serialize(array_merge($content_row, $vals));
+            $this->page_model->save(array('code' => $data,'site_lang'=>$this->session->userdata('admin_lang')),'ckey', $this->uri->segment(3),$this->session->userdata('admin_lang'));
+            setMsg('success', 'Settings updated successfully !');
+            redirect(ADMIN . "/sitecontent/".$this->uri->segment(3));
+            exit;
+        }
+
+        $this->data['row'] = $this->page_model->get_row_where(array('ckey' => $this->uri->segment(3),'site_lang'=>$this->session->userdata('admin_lang')));
+        
+        $this->data['row'] = unserialize($this->data['row']->code);
+        $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
+    }
     
     public function locations()
     {

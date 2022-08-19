@@ -60,4 +60,47 @@
             $this->load->view('includes/footer');
           ?>
         </body>
+        <script>
+          $(document).on('click', '.searchCall', function(e) 
+          {
+            showProducts();
+          });
+
+          var xhr = new window.XMLHttpRequest();
+          var ajaxSearch = false;
+
+          function showProducts() 
+          {
+              if(xhr && xhr.readyState != 4) {
+                  xhr.abort();
+              }
+              if(ajaxSearch)
+                  return;
+
+              let formData = $("#job-search-form").serializeArray();
+              $.ajax({
+                  url: '<?=base_url('page/search_jobs')?>',
+                  type: "POST",
+                  data: $.param(formData),
+                  success: function (rs) {
+                      let data = JSON.parse(rs);
+                      $('#jobs-listing').html(data.html);
+                  },
+                  error: function (data) {
+                      console.log(data);
+                  },
+                  complete: function (data) {
+                      ajaxSearch = false;
+                  },
+                  xhr : function(){
+                      return xhr;
+                  }
+              }); 
+          }
+          // END SEARCH BLOCK
+
+          $("#selectedFile").on("change", function(e){
+            $('#file-name').html(e.target.files[0].name);
+          })
+        </script>
 </html>

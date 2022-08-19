@@ -374,7 +374,7 @@
                             <tr style="background-color: #eee">
                                 <th width="10%">Image</th>
                                 <th width="25%">Title</th>
-                                <th width="25%">Image Link</th>
+                                <th width="25%">Video Iframe Embeded Link</th>
                                 <th width="10%">Order#</th>
                                 <th width="4%" class="text-center"><a href="javascript:void(0)" id="addNewRowTbl" class="addNewRowTbl"><i class="fa fa-plus" aria-hidden="true"></i></a></th>
                             </tr>

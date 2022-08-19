@@ -31,6 +31,34 @@ class Page_model extends CRUD_model {
 
     }
 
+
+	function search_for_jobs($post)
+	{
+		$this->db->select('*');
+		$this->db->from('jobs');
+
+		if(isset($post['job_cat']) && !empty($post['job_cat']))
+		{
+            $this->db->where('job_cat', $post['job_cat']);
+		}
+
+		if(isset($post['practice_area_id']) && !empty($post['practice_area_id']))
+		{
+            $this->db->where('practice_area_id', $post['practice_area_id']);
+		}
+
+		if(isset($post['experience_level_id']) && !empty($post['experience_level_id']))
+		{
+            $this->db->where('experience_level_id', $post['experience_level_id']);
+		}
+
+		$this->db->where(['status'=> 1]);
+        $this->db->order_by('id', 'desc');
+		return $this->db->get()->result();
+		// pr($this->db->last_query());
+	}
+
+
 }
 
 ?>

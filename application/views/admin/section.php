@@ -63,6 +63,16 @@
         </tr>
         <tr  class="odd gradeX status_tr">
             <td class="text-center"><strong>3</strong></td>
+            <td class="text-left"><strong>Job Detail</strong></td>
+            <td class="text-left">Page</td>
+            <td class="text-center">
+                <div class="btn-group">
+                    <a href="<?= base_url(ADMIN) ?>/sitecontent/job_detail" class="btn btn-primary"> <i class="glyphicon glyphicon-edit" style="color: #fff" aria-hidden="true"></i> Edit Page </a>
+                </div>
+            </td>
+        </tr>
+        <tr  class="odd gradeX status_tr">
+            <td class="text-center"><strong>4</strong></td>
             <td class="text-left"><strong>Locations</strong></td>
             <td class="text-left">Page</td>
             <td class="text-center">
@@ -72,7 +82,7 @@
             </td>
         </tr>
         <tr  class="odd gradeX status_tr">
-            <td class="text-center"><strong>4</strong></td>
+            <td class="text-center"><strong>5</strong></td>
             <td class="text-left"><strong>Contact</strong></td>
             <td class="text-left">Page</td>
             <td class="text-center">

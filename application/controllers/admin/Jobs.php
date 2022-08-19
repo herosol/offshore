@@ -53,6 +53,7 @@ class Jobs extends Admin_Controller {
                 'experience_level_id'=>$vals['experience_level_id'],
                 'jurisdiction'=>$vals['jurisdiction'],
                 'positions_available'=>$vals['positions_available'],
+                'working_type'=>$vals['working_type'],
                 'salary'=>$vals['salary'],
                 'status'=>$vals['status'],
                 'created_date'=>$created_date,

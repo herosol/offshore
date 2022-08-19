@@ -14,70 +14,16 @@
           <h2><?=$site_content['section2_heading']?></h2>
         </div>
         <div class="flex">
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l2.jpg" alt="">
-              </div>
-              <h3>British Virgin Islands</h3>
-            </a>
-          </div>
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l3.jpg" alt="">
-              </div>
-              <h3>Bermuda</h3>
-            </a>
-          </div>
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l1.jpg" alt="">
-              </div>
-              <h3>Turks & Caicos</h3>
-            </a>
-          </div>
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l4.jpg" alt="">
-              </div>
-              <h3>Cayman Islands</h3>
-            </a>
-          </div>
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l2.jpg" alt="">
-              </div>
-              <h3>British Virgin Islands</h3>
-            </a>
-          </div>
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l3.jpg" alt="">
-              </div>
-              <h3>Bermuda</h3>
-            </a>
-          </div>
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l1.jpg" alt="">
-              </div>
-              <h3>Turks & Caicos</h3>
-            </a>
-          </div>
-          <div class="col">
-            <a href="location-detail.php" class="inner">
-              <div class="image">
-                <img src="images/l4.jpg" alt="">
-              </div>
-              <h3>Cayman Islands</h3>
-            </a>
-          </div>
+          <?php foreach($locations as $index => $row): ?>
+            <div class="col">
+              <a href="<?=base_url()?>location-detail/<?=doEncode($row->id)?>" class="inner">
+                <div class="image">
+                  <img src="<?= get_site_image_src("locations", $row->image, 'thumb_'); ?>" alt="">
+                </div>
+                <h3><?=$row->title?></h3>
+              </a>
+            </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>

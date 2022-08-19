@@ -54,7 +54,9 @@ $route['translate_uri_dashes'] = TRUE;
 
 $route['default_controller'] = 'index';
 $route['jobs'] = 'page/jobs';
+$route['job-detail/(:any)'] = 'page/job_detail/$1';
 $route['locations'] = 'page/locations';
+$route['location-detail/(:any)'] = 'page/location_detail/$1';
 $route['contact-us'] = 'page/contact_us';
 
 

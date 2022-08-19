@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 if($_SERVER['HTTP_HOST']!='localhost'){
 	$db['default'] = array(
-		'dsn'	=> '',
+		'dsn'	   => '',
 		'hostname' => 'mysql1003.mochahost.com',
-		'username' => 'herosol_abida',
-		'password' => '#.U+$1L#BCvP',
-		'database' => 'herosol_mist'
+		'username' => 'herosol_saad2',
+		'password' => ')#fGii+r_0;,',
+		'database' => 'herosol_off-shore'
 	);
 }else{
 	$db['default'] = array(

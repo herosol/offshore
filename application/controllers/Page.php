@@ -87,19 +87,38 @@ class Page extends MY_Controller
         $row = $this->page_model->get_row_where(array('ckey' => 'jobs'));       
         $this->data['site_content'] = unserialize($row->code);
         $this->data['pageView']='job';
+        $this->data['cats'] = $this->master->get_data_rows('job_categories', ['status'=> 1]);
+        $this->data['areas'] = $this->master->get_data_rows('job_practice_area', ['status'=> 1]);
+        $this->data['levels'] = $this->master->get_data_rows('job_experience_levels', ['status'=> 1]);
         $this->data['jobs'] = $this->master->get_data_rows('jobs', ['status'=> 1], 'desc');
         $this->data['footer']=true;
         $this->load->view("includes/site-master", $this->data);
+    }
+
+    function search_jobs()
+    {
+        if($this->input->post())
+        {
+            $this->data['jobs'] = $this->page_model->search_for_jobs($this->input->post());
+            echo json_encode(
+                [
+                    'status'=> true,
+                    'html'=> $this->load->view('search-job', $this->data, true)
+                ]   
+            );
+        }
     }
     
     function locations()
     {
         $row = $this->page_model->get_row_where(array('ckey' => 'locations')); 
         $this->data['site_content'] = unserialize($row->code);
+        $this->data['locations'] = $this->master->get_data_rows('locations', ['status'=> 1], 'desc');
         $this->data['pageView']='location';
         $this->data['footer']=true;
         $this->load->view("includes/site-master", $this->data);
     }
+
     function resources()
     {
         $row = $this->page_model->get_row_where(array('ckey' => 'resources'));       
@@ -129,6 +148,7 @@ class Page extends MY_Controller
             show_404();
         }
     }
+    
     function case_studies($id)
     {
         $id=doDecode($id);
@@ -146,23 +166,109 @@ class Page extends MY_Controller
             show_404();
         }
     }
-    function product_details($id)
+    
+    function job_detail($id)
     {
-        $id=doDecode($id);
+        $id = doDecode($id);
+        if($vals = $this->input->post())
+        {
+            $res = array();
+            $res['hide_msg'] = 0;
+            $res['scroll_to_msg'] = 0;
+            $res['status'] = 0;
+            $res['frm_reset'] = 0;
+            $res['redirect_url'] = 0;
 
-        if (intval($id) > 0 && $this->data['product'] = $this->product_model->get_row_where(array("id"=>$id,'status'=>1))) {
-            $this->data['pageView'] = 'pages/product';
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+            $this->form_validation->set_rules('phone', 'Phone No', 'required');
+            $this->form_validation->set_rules('msg', 'Message', 'required');
+            if ($this->form_validation->run() === FALSE) {
+                $res['msg'] = validation_errors();
+            } else {
+                $vals['msg'] = html_escape($this->input->post('msg'));
+                $vals['created_date']=date('Y-m-d H:i:s');
+                $vals['status']=0;
+                $vals['job_id'] = $id;
+
+                if (isset($_FILES["cv"]["name"]) && $_FILES["cv"]["name"] != "") {
+                    $image = upload_file(UPLOAD_PATH.'cv/', 'cv', 'file');
+                    if(!empty($image['file_name'])){
+                        $vals['cv'] = $image['file_name'];
+                    }
+                }
+
+                $job_id = $this->master->save('job_enquiries', $vals);
+                // $vals['site_email'] = $this->data['site_settings']->site_email;
+                // $vals['site_noreply_email'] = $this->data['site_settings']->site_noreply_email;
+                
+                if ($job_id > 0) {
+                    // if ($_SERVER['HTTP_HOST'] != 'localhost') {
+                    //     $this->sendMessage($vals);
+                    // }
+                    $res['msg'] = 'Enquiry sent successfully!';
+                    // $n_ar['sender'] = $this->session->userdata('mem_id');
+                    // $n_ar['mem_id'] = 0;
+                    // $n_ar['created_date'] = date('Y-m-d h:i:s');
+                    // $n_ar['status'] = 0;
+                    // $n_ar['section'] = 'New Contact message';
+                    // $n_ar['txt'] = 'You have received a message from '.$vals['name'].'. To view details, <a href="'.base_url(ADMIN.'/contact/manage/'.$id).'">click here</a>';
+                    // $this->master->save('notify', $n_ar); 
+                    $res['status'] = 1;
+                    $res['frm_reset'] = 1;
+                    $res['hide_msg'] = 1;
+                    // $res['redirect_url'] = site_url('contact-us');
+                } else {
+                    $res['msg'] = 'Error Occurred!';
+                }
+                /*}else{
+                    $res['msg'] = showMsg('error','Please verify that you are not robot!');
+
+                    // $res['redirect_url'] = site_url('contact-us');
+                }*/
+            }
+            exit(json_encode($res));
+        }
+        else
+        {
+            if (intval($id) > 0 && $this->data['job'] = $this->master->get_data_row('jobs', ['status'=> 1, 'id'=> $id])) {
+                $row = $this->page_model->get_row_where(array('ckey' => 'job_detail'));       
+                $this->data['site_content'] = unserialize($row->code);
+    
+                $this->data['pageView'] = 'job-detail';
+                $this->data['footer']=true;
+                // pr($this->data['tags']);
+                $this->data['page_title'] = $this->data['job']->title;
+                $this->data['meta_keywords'] = $this->data['job']->title;
+                $this->data['meta_description'] = $this->data['job']->title;
+                $this->data['meta_title'] = $this->data['job']->title;
+                $this->load->view("includes/site-master", $this->data);
+            } else {
+                show_404();
+            }
+        }
+    }
+
+    function location_detail($id)
+    {
+        $id = doDecode($id);
+
+        if (intval($id) > 0 && $this->data['location'] = $this->master->get_data_row('locations', ['status'=> 1, 'id'=> $id]))
+        {
+            $this->data['pageView'] = 'location-detail';
             $this->data['footer']=true;
             // pr($this->data['tags']);
-            $this->data['page_title'] = $this->data['product']->title;
-            $this->data['meta_keywords'] = $this->data['product']->meta_keywords;
-            $this->data['meta_description'] = $this->data['product']->meta_description;
-            $this->data['meta_title'] = $this->data['product']->meta_title;
+            $this->data['page_title'] = $this->data['location']->title;
+            $this->data['meta_keywords'] = $this->data['location']->meta_keywords;
+            $this->data['meta_description'] = $this->data['location']->meta_description;
+            $this->data['meta_title'] = $this->data['location']->meta_title;
+            $this->data['images'] = getMultiText($id);
             $this->load->view("includes/site-master", $this->data);
         } else {
             show_404();
         }
     }
+
     function blog()
     {
         $row = $this->page_model->get_row_where(array('ckey' => 'blog'));       

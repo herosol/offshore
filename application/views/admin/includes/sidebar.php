@@ -27,70 +27,12 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-
-           
-            <!-- <li class="<?= ($this->uri->segment(2) == 'products') ? ' opened  active' : '' ?>">
-                <a href="<?php echo base_url(ADMIN . '/products'); ?>">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span class="title">Products</span>
-                </a>
-            </li> -->
-            <!-- <li class="<?= ($this->uri->segment(2) == 'case_studies') ? ' opened  active' : '' ?>">
-                <a href="<?php echo base_url(ADMIN . '/case_studies'); ?>">
-                    <i class="fa fa-tasks"></i>
-                    <span class="title">Case Studies</span>
-                </a>
-            </li> -->
-            <!-- <li class="<?= ($this->uri->segment(2) == 'hocl') ? ' opened  active' : '' ?>">
-                <a href="<?php echo base_url(ADMIN . '/hocl'); ?>">
-                    <i class="fa fa-leaf"></i>
-                    <span class="title">HOCL</span>
-                </a>
-            </li> -->
-            <!-- <li class="<?= ($this->uri->segment(2) == 'testimonials') ? ' opened  active' : '' ?>">
-                <a href="<?php echo base_url(ADMIN . '/testimonials'); ?>">
-                    <i class="fa fa-quote-left"></i>
-                    <span class="title">Testimonials</span>
+            <li class=" <?= ($this->uri->segment(2) == 'section' || $this->uri->segment(3) == 'home' || $this->uri->segment(3) == 'about' || $this->uri->segment(3) == 'blog' || $this->uri->segment(3) == 'faq' || $this->uri->segment(3) == 'news' || $this->uri->segment(3) == 'loan_forms' || $this->uri->segment(3) == 'contact') ? ' opened  active' : '' ?>">
+                <a href="<?=base_url(ADMIN.'/section')?>">
+                    <i class="fa fa-file  "></i>
+                    <span class="title">Manage Pages Content</span>
                 </a>
             </li>
-            <li class="<?= ($this->uri->segment(2) == 'team') ? ' opened  active' : '' ?>">
-                <a href="<?php echo base_url(ADMIN . '/team'); ?>">
-                    <i class="fa fa-user"></i>
-                    <span class="title">Team</span>
-                </a>
-            </li>
-            <li class=" <?= ($this->uri->segment('2') == 'faq' ) ? ' opened  active' : '' ?>">
-                    <a href="<?= site_url(ADMIN.'/faq') ?>">
-                        <i class="fa fa-question"></i>
-                        <span class="title">FAQs</span>
-                    </a>
-            </li>
-            <li class=" <?= ($this->uri->segment('2') == 'resources' ) ? ' opened  active' : '' ?>">
-                    <a href="<?= site_url(ADMIN.'/resources') ?>">
-                        <i class="entypo-camera"></i>
-                        <span class="title">Resources</span>
-                    </a>
-            </li> -->
-            <!-- <li class="<?= ($this->uri->segment(2) == 'partners') ? ' opened  active' : '' ?>">
-                <a href="<?php echo base_url(ADMIN . '/partners'); ?>">
-                    <i class="fa fa-user"></i>
-                    <span class="title">Partners</span>
-                </a>
-            </li> -->
-            
-           
-                <li class=" <?= ($this->uri->segment(2) == 'section' || $this->uri->segment(3) == 'home' || $this->uri->segment(3) == 'about' || $this->uri->segment(3) == 'blog' || $this->uri->segment(3) == 'faq' || $this->uri->segment(3) == 'news' || $this->uri->segment(3) == 'loan_forms' || $this->uri->segment(3) == 'contact') ? ' opened  active' : '' ?>">
-                    <a href="<?=base_url(ADMIN.'/section')?>">
-                        <i class="fa fa-file  "></i>
-                        <span class="title">Manage Pages Content</span>
-                    </a>
-                </li>
-                <!-- <li class=" <?= ($this->uri->segment(2) == 'footer-content') ? ' opened  active' : '' ?>">
-                    <a href="<?=base_url(ADMIN.'/footer-content')?>">
-                        <i class="fa fa-file  "></i>
-                        <span class="title">Manage Footer Content</span>
-                    </a>
-                </li> -->
             <li class=" <?= ($this->uri->segment(2) == 'job_categories' || $this->uri->segment(2) == 'jobs' || $this->uri->segment(2) == 'practice_area' || $this->uri->segment(2) == 'experience_levels') ? ' opened  active' : '' ?>">
                 <a href="javascript:void(0)">
                     <i class="entypo-doc-text"></i>
@@ -129,6 +71,20 @@
                 <a href="<?= site_url(ADMIN) ?>/contact">
                     <i class="fa fa-envelope"></i>
                     <span class="title">Contact Messages <?=total_rows('contact')?></span>
+                </a>
+            </li>
+
+            <li class="opened <?= ($this->uri->segment(2) == 'jobs_enquiries') ? 'active' : '' ?>">
+                <a href="<?= site_url(ADMIN) ?>/jobs_enquiries">
+                    <i class="fa fa-question"></i>
+                    <span class="title">Jobs Enquiries <?=total_rows('job_enquiries')?></span>
+                </a>
+            </li>
+
+            <li class="opened <?= ($this->uri->segment(2) == 'locations') ? 'active' : '' ?>">
+                <a href="<?= site_url(ADMIN) ?>/locations">
+                    <i class="fa fa-map-marker"></i>
+                    <span class="title">manage Locations</span>
                 </a>
             </li>
 
