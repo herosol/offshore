@@ -71,13 +71,24 @@
                 <h2>Details</h2>
               </div>
               <div class="border">
+
+              <div class="inner1">
+                  <div class="col1">
+                    <h3>
+                      Practice Area</h3>
+                  </div>
+                  <div class="col2">
+                    <h3><?= get_prac_area($job->practice_area_id) ?></h3>
+                  </div>
+                </div>
+
                 <div class="inner1">
                   <div class="col1">
                     <h3>
                       Jursidiction</h3>
                   </div>
                   <div class="col2">
-                    <h3><?= $job->jurisdiction ?></h3>
+                    <h3><?= get_jurisdiction_name($job->jurisdiction) ?></h3>
                   </div>
                 </div>
 
@@ -91,15 +102,7 @@
                   </div>
                 </div>
 
-                <div class="inner1">
-                  <div class="col1">
-                    <h3>
-                      Practice Area</h3>
-                  </div>
-                  <div class="col2">
-                    <h3><?= get_prac_area($job->practice_area_id) ?></h3>
-                  </div>
-                </div>
+
 
                 <div class="inner1">
                   <div class="col1">
@@ -111,25 +114,6 @@
                   </div>
                 </div>
 
-                <div class="inner1">
-                  <div class="col1">
-                    <h3>
-                      Experience Level</h3>
-                  </div>
-                  <div class="col2">
-                    <h3><?= $job->years_of_experience==10?'10+':$job->years_of_experience ?> Years Experience</h3>
-                  </div>
-                </div>
-
-                <div class="inner1">
-                  <div class="col1">
-                    <h3>
-                      Positions Available</h3>
-                  </div>
-                  <div class="col2">
-                    <h3><?= $job->positions_available ?> Positions Available</h3>
-                  </div>
-                </div>
 
                 <div class="inner1">
                   <div class="col1">
@@ -140,6 +124,8 @@
                     <h3><?= format_date($job->created_date,'M d Y'); ?></h3>
                   </div>
                 </div>
+
+
 
               </div>
             </div>

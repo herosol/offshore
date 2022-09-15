@@ -97,19 +97,26 @@
                                         <div class="form-group">
                                             <div class="col-md-12">
                                                 <label class="control-label">Jurisdiction</label>
-                                                <input type="text" name="jurisdiction" value="<?=$row->jurisdiction?>" class="form-control" required>
+                                                <select name="jurisdiction" id="jurisdiction" class="form-control" required>
+                                                    <option value=''>-- Select --</option>
+                                                    <?php foreach ($jurisdictions as $index => $c) { ?>
+                                                        <option value="<?= $c->id ?>" <?= ($row->jurisdiction == $c->id) ? 'selected' : '' ?>> <?= $c->title ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
                                                 <label class="control-label">Positions Available</label>
                                                 <input type="text" name="positions_available" value="<?=$row->positions_available?>" class="form-control" required>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
+                                    </div> -->
+                                    <!-- <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
                                                 <label class="control-label">Office Type</label>
@@ -123,7 +130,18 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="control-label">Salary</label>
+                                                <input type="text" name="salary" value="<?=$row->salary?>" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>                                
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
@@ -135,7 +153,7 @@
                                     <div class="clearfix"></div>
                                 </div>
 
-                                <div class="panel-heading col-md-12">
+                                <!-- <div class="panel-heading col-md-12">
                                     <div class="panel-title"><h3>Experience</h3></div>
                                 </div>
                                 <div class="panel-body">
@@ -149,22 +167,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div class="clearfix"></div> -->
 
-                                <div class="panel-heading col-md-12">
-                                    <div class="panel-title"><h3>Salary</h3></div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <label class="control-label">Salary</label>
-                                                <input type="text" name="salary" value="<?=$row->salary?>" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>                                
-                                    <div class="clearfix"></div>
-                                </div>
+
 
                             </div>                            
                         </div>
@@ -235,7 +240,6 @@
                 <th width="10%">Practice Area, Experience Level</th>
                 <th width="10%">Jursidiction</th>
                 <th width="30%">Description</th>
-                <th width="5%">Years Of Experiece</th>
                 <th width="10%">Salary</th>
                 <th>Status</th>
                 <th width="15%">Created date</th>
@@ -247,12 +251,11 @@
                 <?php foreach ($jobs as $blog):  ?>                    
                     <tr class="odd gradeX">
                         <td class="text-center"><?= ++$count; ?></td>
-                        <td><b><?= $blog->title ?></b><br/><?= $blog->positions_available ?> Positions Available</td>
+                        <td><b><?= $blog->title ?></b></td>
                         <td><b><?= get_job_cat($blog->job_cat) ?></b></td>
                         <td><b><?= get_prac_area($blog->practice_area_id) ?></b><br/><b><?= get_experience_level($blog->experience_level_id) ?></b></td>
-                        <td><b><?= $blog->jurisdiction ?></b></td>
+                        <td><b><?= get_jurisdiction_name($blog->jurisdiction) ?></b></td>
                         <td><b><?= short_text($blog->description,100); ?></b></td>
-                        <td><b><?= $blog->years_of_experience==10?'10+':$blog->years_of_experience ?></b></td>
                         <td><b><?= $blog->salary?></b></td>
                         <td><b><?=get_active_status($blog->status)?></b></td>
                        <td><b><?= format_date($blog->created_date,'M d Y h:i:s A'); ?></b></td>

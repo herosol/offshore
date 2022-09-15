@@ -38,6 +38,13 @@ function get_prac_area($id)
     $row = $CI->master->getRow('job_practice_area', array('id' => $id));
     return ($row->title);
 }
+function get_jurisdiction_name($id)
+{
+    global $CI;
+    $CI = get_instance();
+    $row = $CI->master->getRow('job_jurisdiction', array('id' => $id));
+    return ($row->title);
+}
 function get_experience_level($id)
 {
     global $CI;

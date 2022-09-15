@@ -57,6 +57,12 @@
                             <span class="title">Job Experience Levels</span>
                         </a>
                     </li>
+                    <li class=" <?= ($this->uri->segment(2) == 'jurisdiction') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/jurisdiction') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Job Jurisdiction</span>
+                        </a>
+                    </li>
                     <li class=" <?= ($this->uri->segment(2) == 'jobs') ? ' active' : '' ?>">
                         <a href="<?= site_url(ADMIN.'/jobs') ?>">
                             <i class="entypo-doc-text  "></i>

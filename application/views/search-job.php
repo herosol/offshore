@@ -15,7 +15,7 @@
         <div class="col1">
         <div class="content">
             <h4><?=$j->title?></h4>
-            <h5><?= ucfirst(str_replace('_',' ', $j->working_type)) ?></h5>
+            <h5><?= get_jurisdiction_name($j->jurisdiction) ?></h5>
         </div>
         </div>
         <div class="job_type">
